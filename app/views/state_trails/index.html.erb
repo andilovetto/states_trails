@@ -1,0 +1,9 @@
+<h1><%= @state.name %> Trails</h1>
+<% @trails.each do |trail| %>
+  <p>Name: <%= trail.name %></p>
+  <p>Seasonal Closure: <%= trail.seasonal_closures %></p>
+  <p>Mileage: <%= trail.mileage %></p>
+  <p>Elevation: <%= trail.elevation %></p>
+  <p>State ID: <%= trail.state_id %></p>
+
+<% end %>
