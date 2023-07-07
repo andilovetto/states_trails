@@ -20,5 +20,10 @@ RSpec.describe "state show page" do
     expect(page).to have_content("Number of Trails: #{colorado.trails.count}")
   end
 
-  
+  it "provides link to trails" do
+    expect(page).to have_link("#{colorado.name} Trails")
+    click_link "#{colorado.name} Trails"
+    expect(current_path).to eq("/states/#{colorado.id}/trails")
+  end
+
 end
