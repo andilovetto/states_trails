@@ -1,8 +1,8 @@
 require "rails_helper"
 
 RSpec.describe "states index page" do
-  let!(:colorado) { State.create!(name: "Colorado", number_of_trails: 3, mountainous_terrain: true) } 
-  let!(:alabama) { State.create!(name: "Alabama", number_of_trails: 2, mountainous_terrain: false) } 
+  let!(:colorado) { State.create!(name: "Colorado", number_of_parks: 3, mountainous_terrain: true) } 
+  let!(:alabama) { State.create!(name: "Alabama", number_of_parks: 2, mountainous_terrain: false) } 
   
   before do     
     visit "/states"
@@ -11,5 +11,23 @@ RSpec.describe "states index page" do
   it "displays names of each state" do
     expect(page).to have_content(colorado.name)
     expect(page).to have_content(alabama.name)
+  end
+
+  it "displays states in order of creation with creation info" do
+    expect(alabama.name).to appear_before(colorado.name)
+  end
+
+  # proving link is on all pages, also tested in spec/features/trails/index_spec.rb
+  it "provides link to trail index at every page" do 
+    expect(page).to have_link("Trail Index")
+    click_link "Trail Index"
+    expect(current_path).to eq("/trails")
+  end
+
+  # proving link is on all pages, also tested in spec/features/trails/index_spec.rb
+  it "provides link to state index at every page" do 
+    expect(page).to have_link("State Index")
+    click_link "State Index"
+    expect(current_path).to eq("/states")
   end
 end
