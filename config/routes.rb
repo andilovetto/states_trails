@@ -13,6 +13,9 @@ Rails.application.routes.draw do
 
   get "/trails", to: "trails#index"
   get "/trails/:id", to: "trails#show"
+  get "/trails/:id/edit", to: "trails#edit"
+  patch "/trails/:id", to: "trails#update"
+
 
 
 end
