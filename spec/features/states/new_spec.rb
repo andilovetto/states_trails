@@ -13,5 +13,6 @@ RSpec.describe "states new page" do
     click_button "Create State"
     expect(current_path).to eq("/states")
     expect(State.last.name).to eq("Virginia")
+    expect(page).to have_content("Virginia")
   end
 end 

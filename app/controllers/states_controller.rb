@@ -14,6 +14,19 @@ class StatesController < ApplicationController
   def create
     state = State.new(states_params)
     state.save
+    
+    redirect_to "/states"
+  end
+
+  def edit
+    @state = State.find(params[:id])
+  end
+
+  def update
+    state = State.find(params[:id])
+    state.update(states_params)
+
+    redirect_to "/states/#{state.id}"
   end
 
   private

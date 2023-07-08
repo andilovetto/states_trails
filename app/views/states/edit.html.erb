@@ -1,0 +1,9 @@
+<%= form_with url: "/states/#{@state.id}", method: :patch, local: true do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+  <%= form.label :number_of_parks %>
+  <%= form.text_field :number_of_parks %>
+  <%= form.label :mountainous_terrain %>
+  <%= form.text_field :mountainous_terrain %>
+  <%= form.submit "Update State" %>
+<% end %>

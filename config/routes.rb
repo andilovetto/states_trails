@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get "/states/:id", to: "states#show"
   get "/states/:id/trails", to: "state_trails#index"
   post "/states", to: "states#create"
+  get "/states/:id/edit", to: "states#edit"
+  patch "/states/:id", to: "states#update"
 
   get "/trails", to: "trails#index"
   get "/trails/:id", to: "trails#show"

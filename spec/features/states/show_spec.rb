@@ -26,4 +26,10 @@ RSpec.describe "state show page" do
     expect(current_path).to eq("/states/#{colorado.id}/trails")
   end
 
+  it "updates state info" do
+    expect(page).to have_link("Update #{colorado.name}")
+    click_link "Update #{colorado.name}"
+    expect(current_path).to eq("/states/#{colorado.id}/edit")
+  end
+
 end
