@@ -30,4 +30,10 @@ RSpec.describe "states index page" do
     click_link "State Index"
     expect(current_path).to eq("/states")
   end
+
+  it "has a link to create a new state" do
+    expect(page).to have_link("New State")
+    click_link "New State"
+    expect(current_path).to eq("/states/new")
+  end
 end
