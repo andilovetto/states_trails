@@ -17,4 +17,10 @@ RSpec.describe "trails index page" do
     expect(page).to have_content(turkey_trot.elevation)
     expect(page).to have_content(colorado.id)
   end
+
+  it "updates trail info" do
+    expect(page).to have_link("Update #{turkey_trot.name}")
+    click_link "Update #{turkey_trot.name}"
+    expect(current_path).to eq("/trails/#{turkey_trot.id}/edit")
+  end
 end

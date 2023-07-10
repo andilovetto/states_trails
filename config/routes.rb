@@ -4,11 +4,18 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   get "/states", to: "states#index"
+  get "/states/new", to: "states#new"
   get "/states/:id", to: "states#show"
   get "/states/:id/trails", to: "state_trails#index"
+  post "/states", to: "states#create"
+  get "/states/:id/edit", to: "states#edit"
+  patch "/states/:id", to: "states#update"
 
   get "/trails", to: "trails#index"
   get "/trails/:id", to: "trails#show"
+  get "/trails/:id/edit", to: "trails#edit"
+  patch "/trails/:id", to: "trails#update"
+
 
 
 end

@@ -3,3 +3,5 @@
 <p>Number of Parks: <%= @state.number_of_parks %></p>
 <p>Mountainous Terrain: <%= @state.mountainous_terrain %></p>
 <p>Number of Trails: <%= @number_of_trails %> </p>
+<%= link_to "#{@state.name} Trails", "/states/#{@state.id}/trails" %>
+<%= link_to "Update #{@state.name}", "/states/#{@state.id}/edit" %>

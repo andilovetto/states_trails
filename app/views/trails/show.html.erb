@@ -3,3 +3,4 @@
 <p>Mileage: <%= @trail.mileage %></p>
 <p>Elevation: <%= @trail.elevation %></p>
 <p>State ID: <%= @trail.state_id %></p>
+<%= link_to "Update #{@trail.name}", "/trails/#{@trail.id}/edit" %>
