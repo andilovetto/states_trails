@@ -45,4 +45,10 @@ RSpec.describe "trails index page" do
     expect(page).to have_content(mule_deer.name)
     expect(page).to_not have_content(big_tree.name)
   end
+
+  it "provides link to edit all trails" do
+    expect(page).to have_link ("Edit #{turkey_trot.name}")
+    click_link "Edit #{turkey_trot.name}"
+    expect(current_path).to eq("/trails")
+  end
 end

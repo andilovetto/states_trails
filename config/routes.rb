@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   get "/states/:id/trails/new", to: "state_trails#new"
   post "/states/:id/trails", to: "state_trails#create"
 
-
   get "/trails", to: "trails#index"
   get "/trails/:id", to: "trails#show"
   get "/trails/:id/edit", to: "trails#edit"
