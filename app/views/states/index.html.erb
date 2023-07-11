@@ -1,6 +1,7 @@
 <h1>States</h1>
 <%= link_to "New State", "/states/new" %>
 <% @states.each do |state| %>
+  <%= link_to "Edit #{state.name}", "/states/#{state.id}/edit" %>  
   <p>Name: <%= state.name %></p>
   <p>Number of Parks: <%= state.number_of_parks %></p>
   <p>Mountainous Terrain: <%= state.mountainous_terrain %></p>
