@@ -2,7 +2,7 @@ class StateTrailsController < ApplicationController
   
   def index
     @state = State.find(params[:id])
-    @trails = @state.trails
+    @trails = @state.trails.order(name: :asc)
   end
 
   def new

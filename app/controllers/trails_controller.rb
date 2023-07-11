@@ -1,7 +1,7 @@
 class TrailsController < ApplicationController
 
   def index
-    @trails = Trail.all
+    @trails = Trail.where(seasonal_closures: true)
   end
 
   def show
