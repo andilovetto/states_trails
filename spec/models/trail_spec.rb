@@ -4,4 +4,14 @@ RSpec.describe Trail, type: :model do
   describe "relationships" do
     it { should belong_to  :state }
   end
+
+  describe "class methods" do
+    let!(:colorado) { State.create!(name: "Colorado", number_of_parks: 3, mountainous_terrain: true) } 
+    let!(:turkey_trot) { Trail.create!(name: "Turkey Trot", seasonal_closures: false, mileage: 3.4, elevation: 735, state_id: colorado.id) } 
+    let!(:mule_deer) { colorado.trails.create!(name: "Mule Deer", seasonal_closures: true, mileage: 17, elevation: 1000) } 
+    
+    it ".with_seasonal_closures" do
+      expect(Trail.with_seasonal_closures).to eq([mule_deer])
+    end
+  end
 end

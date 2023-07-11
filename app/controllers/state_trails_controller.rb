@@ -2,7 +2,11 @@ class StateTrailsController < ApplicationController
   
   def index
     @state = State.find(params[:id])
-    @trails = @state.trails.order(name: :asc)
+    if params[:sort] 
+      @trails = @state.alphabetical_trails
+    else
+      @trails = @state.trails
+    end
   end
 
   def new

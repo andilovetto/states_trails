@@ -9,4 +9,8 @@ class State < ApplicationRecord
     trails.count
   end
 
+  def alphabetical_trails
+    trails.order(:name)
+  end
+
 end

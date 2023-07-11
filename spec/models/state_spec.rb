@@ -18,13 +18,21 @@ RSpec.describe State, type: :model do
 
   describe "instance methods" do
     let!(:colorado) { State.create!(name: "Colorado", number_of_parks: 3, mountainous_terrain: true) } 
+    let!(:turkey_trot) { colorado.trails.create!(name: "Turkey Trot", seasonal_closures: false, mileage: 3.4, elevation: 735) } 
     let!(:mule_deer) { colorado.trails.create!(name: "Mule Deer", seasonal_closures: true, mileage: 17, elevation: 1000) } 
     
     describe "#number_of_trails" do
       it "counts number of trails by state" do
-        expect(colorado.number_of_trails).to eq(1)
+        expect(colorado.number_of_trails).to eq(2)
       end
     end
+
+    describe "#alphabetical_trails" do
+      it "alphabetizes trails" do
+        expect(colorado.alphabetical_trails).to eq([mule_deer, turkey_trot])
+      end
+    end
+    
   end
 
 

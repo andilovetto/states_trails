@@ -25,7 +25,9 @@ RSpec.describe "trails index page" do
     expect(page).to_not have_content(hurricane_creek.name)
   end
 
-  it "sorts trails alphabetically" do
+  it "can sort trails alphabetically" do
+    click_link "Sort Trails"
+    expect(current_path).to eq("/states/#{colorado.id}/trails")
     expect(mule_deer.name).to appear_before(turkey_trot.name)
   end
 
