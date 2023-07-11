@@ -1,5 +1,5 @@
 class State < ApplicationRecord
-  has_many :trails
+  has_many :trails, :dependent => :destroy
 
   def self.states_by_created_at
     order('created_at DESC')  

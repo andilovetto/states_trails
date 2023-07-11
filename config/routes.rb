@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   patch "/states/:id", to: "states#update"
   get "/states/:id/trails/new", to: "state_trails#new"
   post "/states/:id/trails", to: "state_trails#create"
+  delete "/states/:id", to: "states#destroy"
 
   get "/trails", to: "trails#index"
   get "/trails/:id", to: "trails#show"

@@ -3,6 +3,8 @@ require "rails_helper"
 RSpec.describe "state show page" do
   let!(:colorado) { State.create!(name: "Colorado", number_of_parks: 3, mountainous_terrain: true) } 
   let!(:alabama) { State.create!(name: "Alabama", number_of_parks: 2, mountainous_terrain: false) } 
+  let!(:mule_deer) { colorado.trails.create!(name: "Mule Deer", seasonal_closures: true, mileage: 17, elevation: 1000) } 
+
   
   before do     
     visit "/states/#{colorado.id}"
@@ -30,6 +32,14 @@ RSpec.describe "state show page" do
     expect(page).to have_link("Update #{colorado.name}")
     click_link "Update #{colorado.name}"
     expect(current_path).to eq("/states/#{colorado.id}/edit")
+  end
+
+  it "deletes state records" do
+    expect(page).to have_link("Delete #{colorado.name}")
+    click_link "Delete #{colorado.name}"
+    expect(current_path).to eq("/states")
+    expect(page).to_not have_content("#{colorado.name}")
+    expect(Trail.all).to eq([])
   end
 
 end
