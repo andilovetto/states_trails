@@ -23,4 +23,11 @@ RSpec.describe "trails index page" do
     click_link "Update #{turkey_trot.name}"
     expect(current_path).to eq("/trails/#{turkey_trot.id}/edit")
   end
+
+  it "deletes trail records" do
+    expect(page).to have_link("Delete #{turkey_trot.name}")
+    click_link "Delete #{turkey_trot.name}"
+    expect(current_path).to eq("/trails")
+    expect(page).to_not have_content("#{turkey_trot.name}")
+  end
 end

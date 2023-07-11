@@ -1,5 +1,8 @@
 # README
 
+schema design: https://erd.dbdesigner.net/designer/schema/1688426541-untitled
+
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
