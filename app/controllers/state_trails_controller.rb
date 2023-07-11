@@ -4,6 +4,8 @@ class StateTrailsController < ApplicationController
     @state = State.find(params[:id])
     if params[:sort] 
       @trails = @state.alphabetical_trails
+    elsif params[:mileage]
+      @trails = @state.mileage_filter(params[:mileage])
     else
       @trails = @state.trails
     end

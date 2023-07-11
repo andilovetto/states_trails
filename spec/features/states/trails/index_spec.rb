@@ -43,4 +43,12 @@ RSpec.describe "trails index page" do
     expect(current_path).to eq("/trails")
     expect(page).to_not have_content("#{turkey_trot.name}")
   end
+
+  it "displays records with given number value for mileage" do
+    expect(page).to have_button("Apply")
+    fill_in :mileage, with: "10"
+    click_button "Apply"
+    expect(page).to have_content(mule_deer.name)
+    expect(page).to_not have_content(turkey_trot.name)
+  end
 end
