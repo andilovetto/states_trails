@@ -4,3 +4,4 @@
 <p>Elevation: <%= @trail.elevation %></p>
 <p>State ID: <%= @trail.state_id %></p>
 <%= link_to "Update #{@trail.name}", "/trails/#{@trail.id}/edit" %>
+<%= link_to "Delete #{@trail.name}", "/trails/#{@trail.id}", method: :delete %>

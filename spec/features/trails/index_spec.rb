@@ -3,9 +3,10 @@ require "rails_helper"
 RSpec.describe "trails index page" do
   let!(:colorado) { State.create!(name: "Colorado", number_of_parks: 3, mountainous_terrain: true) } 
   let!(:alabama) { State.create!(name: "Alabama", number_of_parks: 2, mountainous_terrain: false) }
-  let!(:turkey_trot) { Trail.create!(name: "Turkey Trot", seasonal_closures: false, mileage: 3.4, elevation: 735, state_id: colorado.id) } 
+  let!(:turkey_trot) { Trail.create!(name: "Turkey Trot", seasonal_closures: true, mileage: 3.4, elevation: 735, state_id: colorado.id) } 
   let!(:mule_deer) { colorado.trails.create!(name: "Mule Deer", seasonal_closures: true, mileage: 17, elevation: 1000) } 
-  let!(:hurricane_creek) { alabama.trails.create!(name: "Hurricane Creek", seasonal_closures: false, mileage: 2, elevation: 50) } 
+  let!(:hurricane_creek) { alabama.trails.create!(name: "Hurricane Creek", seasonal_closures: true, mileage: 2, elevation: 50) } 
+  let!(:big_tree) { alabama.trails.create!(name: "Big Tree", seasonal_closures: false, mileage: 12, elevation: 50) } 
 
   before do     
     visit "/trails"
@@ -37,5 +38,24 @@ RSpec.describe "trails index page" do
     expect(page).to have_link("State Index")
     click_link "State Index"
     expect(current_path).to eq("/states")
+  end
+
+  it "displays trails with no seasonal closures" do
+    expect(page).to have_content(turkey_trot.name)
+    expect(page).to have_content(mule_deer.name)
+    expect(page).to_not have_content(big_tree.name)
+  end
+
+  it "provides link to edit all trails" do
+    expect(page).to have_link ("Edit #{turkey_trot.name}")
+    click_link "Edit #{turkey_trot.name}"
+    expect(current_path).to eq("/trails")
+  end
+
+  it "deletes trail records" do
+    expect(page).to have_link("Delete #{turkey_trot.name}")
+    click_link "Delete #{turkey_trot.name}"
+    expect(current_path).to eq("/trails")
+    expect(page).to_not have_content("#{turkey_trot.name}")
   end
 end

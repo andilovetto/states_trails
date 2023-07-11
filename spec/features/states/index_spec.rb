@@ -36,4 +36,17 @@ RSpec.describe "states index page" do
     click_link "New State"
     expect(current_path).to eq("/states/new")
   end
+
+  it "has a link to edit state record" do
+    expect(page).to have_link("Edit #{colorado.name}")
+    click_link "Edit #{colorado.name}"
+    expect(current_path).to eq("/states/#{colorado.id}/edit")
+  end
+
+  it "has a link to delete state record" do
+    expect(page).to have_link("Delete #{colorado.name}")
+    click_link "Delete #{colorado.name}"
+    expect(current_path).to eq("/states")
+    expect(page).to_not have_content("#{colorado.name}")
+  end
 end

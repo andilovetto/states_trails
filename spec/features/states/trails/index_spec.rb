@@ -25,5 +25,30 @@ RSpec.describe "trails index page" do
     expect(page).to_not have_content(hurricane_creek.name)
   end
 
+  it "can sort trails alphabetically" do
+    click_link "Sort Trails"
+    expect(current_path).to eq("/states/#{colorado.id}/trails")
+    expect(mule_deer.name).to appear_before(turkey_trot.name)
+  end
 
+  it "provides link to edit all trails" do
+    expect(page).to have_link ("Edit #{turkey_trot.name}")
+    click_link "Edit #{turkey_trot.name}"
+    expect(current_path).to eq("/trails/#{turkey_trot.id}/edit")
+  end
+
+  it "deletes trail records" do
+    expect(page).to have_link("Delete #{turkey_trot.name}")
+    click_link "Delete #{turkey_trot.name}"
+    expect(current_path).to eq("/trails")
+    expect(page).to_not have_content("#{turkey_trot.name}")
+  end
+
+  it "displays records with given number value for mileage" do
+    expect(page).to have_button("Apply")
+    fill_in :mileage, with: "10"
+    click_button "Apply"
+    expect(page).to have_content(mule_deer.name)
+    expect(page).to_not have_content(turkey_trot.name)
+  end
 end

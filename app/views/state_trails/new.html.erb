@@ -1,0 +1,11 @@
+<%= form_with url: "/states/#{@state.id}/trails", method: :post, local: true do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+  <%= form.label :seasonal_closures %>
+  <%= form.text_field :seasonal_closures %>
+  <%= form.label :mileage %>
+  <%= form.text_field :mileage %>
+  <%= form.label :elevation %>
+  <%= form.text_field :elevation %>
+  <%= form.submit "Create Trail" %>
+<% end %>

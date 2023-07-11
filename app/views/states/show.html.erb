@@ -5,3 +5,4 @@
 <p>Number of Trails: <%= @number_of_trails %> </p>
 <%= link_to "#{@state.name} Trails", "/states/#{@state.id}/trails" %>
 <%= link_to "Update #{@state.name}", "/states/#{@state.id}/edit" %>
+<%= link_to "Delete #{@state.name}", "/states/#{@state.id}", method: :delete %>
